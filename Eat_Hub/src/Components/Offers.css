@@ -1,0 +1,134 @@
+/* Container for the entire offers section */
+.offers-page-container {
+  max-width: 82vw; 
+  margin: 0 auto; /* Center the container on the page */
+  /* NEW: Added padding top for space above the section */
+  padding: 40px 20px 20px 20px; 
+}
+
+/* --- TITLE WRAPPER FIX (MATCHING IMAGE 1) --- */
+.title-wrapper {
+    position: relative; 
+    /* Ensures the wrapper only takes the width of the content inside (title + separator) */
+    display: inline-block; 
+    margin-bottom: 30px; 
+}
+
+/* Title Styling: Text position */
+.offers-title {
+  color: #ff6600; /* Hot offer color */
+  font-size: 2.2rem;
+  font-weight: bold;
+  /* Reset offset and margin to match the image precisely */
+  padding-left: 0; 
+  margin: 0; 
+}
+
+/* Title Separator Styling: Correctly positioned below the text and slightly wider */
+.title-separator {
+  position: absolute;
+  /* NEW: Positioned below the text, relative to the bottom of the title */
+  bottom: -5px; 
+  left: 0;
+  border: 0;
+  height: 3px;
+  background-color: #ff6600; /* Orange color */
+  
+  /* NEW: Width is slightly wider than the title text itself */
+  width: 105%; 
+  margin: 0; 
+}
+
+/* --- GRID LAYOUT (Responsiveness) --- */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 20px; 
+  /* Using max-width here prevents grid items from stretching too wide on huge screens */
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+/* Media queries for responsiveness (Retained) */
+@media (min-width: 600px) {
+  .offers-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+@media (min-width: 900px) {
+  .offers-grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+@media (min-width: 1200px) {
+  .offers-grid {
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}
+
+/* --- CARD STYLING & ANIMATION (Retained modern image-only highlight) --- */
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.offer-image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; 
+  overflow: hidden;
+  border-radius: 8px; 
+  
+  /* Animation: Smooth lift and shadow focused on the image block */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.4s ease-out;
+}
+
+.offer-card:hover .offer-image-container {
+  transform: translateY(-8px); 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.offer-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+
+.offer-card:hover .offer-image {
+  transform: scale(1.03); 
+}
+
+/* --- DISCOUNT TAG FIX (Rounded corners) --- */
+.discount-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  z-index: 10; 
+}
+
+.red-rounded-tag {
+    border-radius: 50px; 
+    padding: 4px 10px; 
+}
+
+/* Offer Name Styling (Retained) */
+.offer-name {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}

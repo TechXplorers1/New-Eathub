@@ -1,0 +1,142 @@
+/* Overall container matching the background color from the image */
+.category-page-container {
+  padding: 40px 20px;
+  background-color: #f7f0e8; /* Light peach/beige background */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Title Styling */
+.category-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.category-highlight {
+  color: #ff6600; /* Orange highlight for "our Category" */
+}
+
+/* --- GRID LAYOUT (Responsiveness) --- */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+  gap: 25px;
+  justify-content: center; /* Center the items when they wrap */
+}
+
+/* Base Card Styling */
+.category-card {
+  position: relative;
+  /* Fixed width on large screens to match the image layout */
+  width: 100%; 
+  max-width: 380px; 
+  height: 500px; /* Fixed height to match the image */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  /* Smooth transition for the hover effect */
+  transition: transform 0.4s ease-in-out; 
+}
+
+/* Media query for responsiveness */
+@media (min-width: 768px) {
+  .category-card {
+    flex: 1 1 300px; /* Allows cards to grow and shrink, occupying about 1/3 of the space */
+    max-width: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .category-grid {
+    flex-wrap: nowrap; /* Keep them in a single line on large screens */
+  }
+}
+
+
+/* --- IMAGE & HOVER EFFECT --- */
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease; /* Animation for the image zoom */
+}
+
+/* Hover Effect: Card lift and Image zoom */
+.category-card:hover {
+  transform: translateY(-8px); /* Subtle lift */
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.05); /* Gentle zoom-in on image */
+}
+
+/* --- OVERLAY CONTENT (Text and Button) --- */
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  /* Gradient overlay for better text readability, matching the image */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: background 0.4s ease;
+}
+
+.category-description {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.category-button {
+  background-color: #ff6600; /* Bright orange button */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  /* Button hover animation */
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.category-button:hover {
+  background-color: #e55c00;
+  transform: translateY(-2px);
+}
+
+/* --- VERTICAL TITLE (Side Bar) --- */
+.category-title-vertical {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 40px; /* Width of the vertical bar */
+  background-color: #f08945; /* Orange background matching the image */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  padding: 10px 0;
+  /* Rotate and position the text vertically */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.category-title-vertical span {
+  /* Add slight spacing between letters if desired */
+  margin-top: 5px;
+}

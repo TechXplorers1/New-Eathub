@@ -1,0 +1,15 @@
+/* --- CRITICAL FIX: Reset default browser margins/padding on the main page elements --- */
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif ;
+  /* overflow-x: hidden; */
+}
+
+#root {
+  width: 100%;
+  padding: 0; 
+  margin: 0; /* Ensures no centering margin is applied */
+  text-align: left; 
+}

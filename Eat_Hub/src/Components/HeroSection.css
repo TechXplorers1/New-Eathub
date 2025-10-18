@@ -1,0 +1,238 @@
+/*=========================================
+BASE STYLES & LAYOUT
+=========================================*/
+.hero-section{
+position:relative;
+/****IMPORTANT***Replace 'cheesecake-background.jpg' with your actual image path(e.g.,'../Assets/HeroImg.png')
+The original file name was Frame 34218.png.*/
+background-image:url('../assets/HeroImg.png');
+background-size:cover;
+background-position:center center;
+background-repeat:no-repeat;
+min-height:65vh;
+padding:80px 0;
+overflow:hidden;
+}
+
+/*Dark Overlay for Text Readability*/
+.hero-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+/*Subtle dark overlay for contrast against the full background image*/
+background-color:rgba(0,0,0,0.2);
+z-index:1;
+}
+
+.hero-section > .container-fluid,
+.hero-section > .container-fluid > .row{
+height:100%;
+}
+
+.hero-content{
+position:relative;
+z-index:10;/*Ensure text is above the overlay*/
+padding-left:calc(1.5rem + 50px);
+}
+
+/*Text Styling - Parent Container */
+.hero-content h1{
+font-weight:640;
+font-size:2rem;
+line-height:1.2; /* Increased line height for better spacing between lines */
+color:#fff;
+/* Set H1 as flex container to align bar and text */
+display:flex;
+align-items:flex-start; /* Align bar to the top of the text */
+}
+
+/* *** This ensures the second line ('your way with') aligns perfectly below the first line after <br /> *** */
+.hero-content h1 .text-line.line-2 {
+    margin-left: 0; /* Ensures the second line starts right after the bar visually */
+    display: inline-block;
+    padding-left: 0;
+}
+
+/* Paragraph Text Container */
+.hero-content p{
+font-size:1.15rem;
+line-height:1.2;
+color:#e3d6d6;
+/* Set P as flex container to align bar and text */
+display:flex;
+align-items:flex-start;
+}
+
+
+/*=========================================
+LINE INDICATOR STYLES(The "Poles")
+=========================================*/
+.line-indicator{
+display:inline-block;
+position:relative;
+width:3px;/*Thickness of the line*/
+background-color:white;
+/*Animation initial state*/
+opacity:0;
+transform:scaleY(0);
+transform-origin:top;
+transition:transform 0.5s ease-out,opacity 0.5s ease-out;
+}
+
+/*H1 Line Indicator Positioning*/
+.h1-indicator{
+/* Increased height to cover both lines of text perfectly */
+height:80px; 
+margin-right:15px;
+}
+
+/*Paragraph Line Indicator Positioning*/
+.p-indicator{
+/* Height adjusted for two lines of paragraph text */
+height:45px; 
+margin-right:15px;
+}
+
+/*Animation Final State(Line grow down)*/
+.line-indicator.animate-in{
+opacity:1;
+transform:scaleY(1);
+}
+/*Delayed animation for paragraph indicator to match text stagger*/
+.p-indicator.animate-in{
+transition-delay:0.5s;
+}
+
+/*=========================================
+BUTTON STYLING(No change)
+=========================================*/
+.btn-outline-light{
+border:1.5px solid #ff9900;/*Orange border for the "Explore menu" button*/
+color:#fff;
+padding:12px 30px;
+font-weight:700;
+transition:all 0.3s ease;
+border-radius:15px;
+}
+.btn-outline-light:hover{
+background-color:#ff9900;
+color:#fff;
+}
+
+.btn-warning{
+background-color:#ff9900;
+border-color:#ff9900;
+color:white;
+padding:12px 30px;
+font-weight:600;
+transition:all 0.3s ease;
+border-radius:15px;
+}
+.btn-warning:hover{
+background-color:#e68a00;
+border-color:#e68a00;
+}
+
+
+/*=========================================
+ANIMATIONS(Text Staggered Slide-in)
+=========================================*/
+
+/*Overall section fade-in*/
+.hero-section{
+opacity:0;
+transform:translateY(20px);
+transition:opacity 0.6s ease-out,transform 0.6s ease-out;
+}
+.hero-section.is-visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/*---Content Elements Animation---*/
+/*Initial states:pushed left and transparent*/
+.text-line,
+.buttons-group,
+.subtext{
+opacity:0;
+transform:translateX(-50px);
+transition:opacity 0.8s ease-out,transform 0.8s ease-out;
+}
+
+/*Staggered animation delays*/
+.text-line.line-1.animate-in{
+opacity:1;
+transform:translateX(0);
+transition-delay:0.3s;
+}
+.text-line.line-2.animate-in{
+opacity:1;
+transform:translateX(0);
+transition-delay:0.5s;
+}
+
+.subtext.animate-in{
+opacity:1;
+transform:translateX(0);
+transition-delay:0.7s;
+}
+
+.buttons-group.animate-in{
+opacity:1;
+transform:translateX(0);
+transition-delay:0.9s;
+}
+
+
+/*=========================================
+RESPONSIVENESS(Mobile/Tablet adjustments)
+=========================================*/
+
+/*Tablets and below(Bootstrap 'lg' breakpoint:992px)*/
+@media (max-width:991.98px){
+.hero-section{
+min-height:80vh;/*Reduced height on mobile/tablet*/
+}
+
+.hero-content{
+padding-left:15px;
+padding-right:15px;
+text-align:center;
+display:block;
+}
+
+.hero-content h1, .hero-content p {
+display:block;
+text-align:center;
+}
+
+/****CRITICAL:Hide the line indicators when text is centered on mobile*** */
+.line-indicator{
+display:none;
+}
+
+.buttons-group{
+justify-content:center;
+}
+}
+
+/*Smaller mobile devices(Bootstrap 'sm' breakpoint:576px)*/
+@media (max-width:575.98px){
+.hero-content h1{
+font-size:2.2rem;
+}
+
+.buttons-group{
+flex-direction:column;
+align-items:center;
+}
+
+.btn-outline-light,
+.btn-warning{
+width:80%;
+margin-bottom:10px;
+margin-right:0 !important;
+}
+}
