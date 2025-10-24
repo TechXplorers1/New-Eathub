@@ -1,0 +1,146 @@
+.sidebar {
+  position: relative;
+  width: 250px;
+  background-color: #fafafa;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-toggle {
+  display: none;
+  margin-bottom: 12px;
+  padding: 0 16px;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0 16px 16px;
+  gap: 8px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  font-size: 1.4rem;
+  color: #ff6b1d;
+  font-weight: 800;
+}
+
+.brand-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .brand-name {
+  opacity: 0;
+  display: none;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+  flex-grow: 1;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #f0f0f0;
+}
+
+.sidebar-item.active {
+  background-color: #ff6b1d;
+  color: white;
+}
+
+.sidebar-item.active .sidebar-icon {
+  color: white;
+}
+
+.sidebar-item.bottom-item {
+  margin-top: auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 1px solid #eaeaea;
+  margin-top: 16px;
+}
+
+.sidebar-icon {
+  color: #6c757d;
+  margin-right: 12px;
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon {
+  color: inherit;
+}
+
+.sidebar-label {
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-label {
+  opacity: 0;
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 60px;
+  }
+  .sidebar-toggle {
+    display: block;
+  }
+  .sidebar:not(.collapsed) {
+    width: 250px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    width: 100%;
+    border-radius: 12px;
+  }
+  .sidebar-toggle {
+    display: block;
+  }
+  .sidebar.collapsed {
+    width: 100%;
+  }
+  .sidebar.collapsed .brand-name,
+  .sidebar.collapsed .sidebar-label {
+    opacity: 1;
+    display: inline-block;
+  }
+}

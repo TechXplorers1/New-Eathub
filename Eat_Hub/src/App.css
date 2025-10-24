@@ -1,15 +1,61 @@
 /* --- CRITICAL FIX: Reset default browser margins/padding on the main page elements --- */
-html, body {
+/* html, body {
   padding: 0;
   margin: 0;
   width: 100%;
   font-family: sans-serif ;
-  /* overflow-x: hidden; */
 }
 
 #root {
   width: 100%;
   padding: 0; 
-  margin: 0; /* Ensures no centering margin is applied */
+  margin: 0; 
   text-align: left; 
+} */
+/* Reset & Hide Scrollbar */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Layout */
+.homepage-root {
+  width: 100%;
+  background-color: #fff;
+}
+
+.content-layout {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .content-layout {
+    flex-direction: column;
+    padding: 16px;
+  }
 }

@@ -1,51 +1,214 @@
-.custom-navbar {
-  background-color: #fff1eb;
-  border-bottom: 1px solid #d9d9d9;
-  padding: 0;
-  height: 80px;
+:root {
+  --eh-primary-orange: #ff6b1d;
+  --eh-light-bg: #faf8f8;
+  --dark-green: #173f1a;
 }
 
-.navbar-logo {
-  height: 70px;
-  width: auto;
+.eh-header {
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  width: 100%;
+  z-index: 1000;
 }
 
-.nav-links .nav-link {
-  color: #a40000;
-  font-weight: 600;
-  margin: 0 10px;
+/* Logo */
+.eh-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(87%) saturate(1600%) hue-rotate(359deg) brightness(100%) contrast(100%);
+}
+
+@media (min-width: 768px) {
+  .eh-logo {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.eh-logo-text {
+  color: var(--eh-primary-orange);
+  font-weight: 800;
+}
+
+/* Search */
+.eh-search-input {
+  border-radius: 50px !important;
+  overflow: hidden;
+  background-color: var(--eh-light-bg);
+}
+
+.eh-search-prepend,
+.eh-search-control {
+  background-color: var(--eh-light-bg) !important;
+  border: none !important;
+}
+
+.eh-search-control::placeholder {
+  color: #a0a0a0;
   font-size: 0.95rem;
 }
 
-.nav-links .nav-link:hover {
-  color: #7a0000;
+/* 🔥 Remove blue focus line */
+.eh-search-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
 }
 
-.signin-btn {
-  border: 1px solid #a40000;
-  color: #000;
-  background-color: transparent;
-  border-radius: 5px;
-  padding: 5px 15px;
-  font-size: 0.9rem;
+/* Expanded search on mobile */
+.eh-search-expanded-mobile {
+  align-items: center;
 }
 
-.signin-btn:hover {
-  background-color: #a40000;
-  color: #fff;
+/* Location Button */
+.eh-location-btn {
+  background-color: var(--eh-light-bg) !important;
+  color: black !important;
+  border-radius: 50px !important;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
-@media (min-width: 992px) {
-    #responsive-navbar-nav {
-        width: 100%;
-        display: flex;
-        justify-content: space-between; 
-        align-items: center;
-    }
-    
+.eh-location-btn:focus,
+.eh-location-btn:active {
+  box-shadow: none !important;
+}
 
-    .nav-links {
-        flex-grow: 1; 
-        justify-content: center; 
-    }
+/* Tabs Group */
+.eh-tab-group {
+  display: flex;
+  background-color: #f8f6f6;
+  border-radius: 50px;
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.eh-tab {
+  color: black !important;
+  padding: 0.5rem 1rem !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.eh-tab:hover {
+  background-color: var(--dark-green);
+  color: white !important;
+}
+
+.eh-tab.active {
+  color: white !important;
+  background-color: var(--eh-primary-orange) !important;
+  font-weight: 600;
+}
+
+/* Location Input in Modal */
+.eh-location-input {
+  border: 2px solid var(--eh-primary-orange);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+}
+
+.eh-location-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 107, 29, 0.2);
+}
+
+/* Icons */
+.eh-icon-btn {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.4rem !important;
+}
+
+.eh-icon-btn:hover {
+  background-color: var(--eh-light-bg) !important;
+  border-radius: 50%;
+}
+
+.eh-cart-btn {
+  background-color: var(--eh-primary-orange) !important;
+  border-color: var(--eh-primary-orange) !important;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  transition: all 0.2s;
+}
+
+.eh-cart-btn:hover {
+  background-color: #e55c14 !important;
+}
+
+/* Offcanvas */
+.eh-mobile-options-offcanvas .offcanvas-header {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.eh-mobile-options-offcanvas .offcanvas-body {
+  padding: 1rem;
+}
+
+.eh-mobile-options-offcanvas .eh-location-btn {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.eh-mobile-options-offcanvas .eh-tab-group {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.25rem;
+  background-color: #f8f6f6;
+  border-radius: 50px;
+}
+
+.eh-mobile-options-offcanvas .eh-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0 !important;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .eh-header .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .eh-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .eh-logo-text {
+    font-size: 1.15rem;
+  }
+
+  .eh-tab {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .eh-search-control::placeholder {
+    font-size: 0.85rem;
+  }
+
+  .eh-tab {
+    font-size: 0.85rem;
+  }
 }
