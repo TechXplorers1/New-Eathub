@@ -1,0 +1,217 @@
+/* src/Components/MenuPage.css */
+
+.menu-page-container {
+  padding: 20px;
+  background-color: #f7f7f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Category Scroller */
+.category-scroller-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.category-scroller {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-behavior: smooth; /* Smooth scroll when buttons are clicked */
+  padding: 10px 0;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.category-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 70px;
+}
+
+.category-item:first-child {
+  margin-left: 0;
+}
+
+.category-item:hover {
+  transform: translateY(-3px);
+}
+
+.category-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+  font-size: 24px;
+  color: #333;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-item:hover .category-icon {
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-name {
+  font-size: 0.85rem;
+  color: #555;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.scroll-button {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  z-index: 10;
+  font-size: 16px;
+  color: #666;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  flex-shrink: 0; /* Important: prevents shrinking */
+}
+
+.scroll-button:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  color: #333;
+}
+
+.scroll-button.left {
+  left: 0;
+  margin-right: 10px;
+}
+
+.scroll-button.right {
+  right: 0;
+  margin-left: 10px;
+}
+
+/* --- Filter Bar --- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduced gap for a tighter look */
+  align-items: center;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px; /* Slightly reduced padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 20px; /* Pill shape */
+  background-color: #fff;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevents wrapping text inside the button */
+}
+
+.filter-button:hover:not(.filter-active) {
+  background-color: #f5f5f5;
+  border-color: #c0c0c0;
+}
+
+.filter-button svg {
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+/* Active/Checkbox Style (matches the 'Eat Hub' button in the image) */
+.filter-active,
+.filter-checkbox {
+  background-color: #ff6b1d; /* Primary Orange */
+  color: white;
+  border-color: #ff6b1d;
+  box-shadow: 0 4px 10px rgba(255, 107, 29, 0.3);
+}
+
+.filter-active:hover,
+.filter-checkbox:hover {
+  background-color: #e55c14; /* Darker orange on hover */
+  border-color: #e55c14;
+}
+
+.filter-active svg,
+.filter-checkbox svg {
+  color: white;
+}
+
+.dropdown-arrow {
+  margin-left: 8px;
+  font-size: 0.8rem;
+  transform: rotate(90deg); /* Downward arrow */
+  transition: transform 0.2s ease;
+}
+
+/* Price Slider Placeholder (Visual representation of the bar beneath the filters) */
+.price-slider-placeholder {
+    width: 100%;
+    height: 6px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    margin-top: 20px;
+    display: none; /* Hide by default, uncomment to show the visual element */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .menu-page-container {
+    padding: 15px;
+  }
+
+  .category-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+  .category-name {
+    font-size: 0.8rem;
+  }
+
+  .category-item {
+    width: 65px;
+    margin: 0 8px;
+  }
+
+  .scroll-button {
+    display: none; /* Hide scroll buttons on mobile, rely on touch scroll */
+  }
+
+  .filter-bar {
+    gap: 8px;
+    justify-content: flex-start; /* Keeps them left-aligned */
+  }
+
+  .filter-button {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+  }
+}

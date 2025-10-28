@@ -1,5 +1,9 @@
+/* Sidebar Base */
 .sidebar {
-  position: relative;
+  /* Use sticky to keep it in place relative to the viewport, even if the parent container scrolls (which it shouldn't) */
+  position: sticky;
+  top: 0; /* Align to the top of the .content-layout */
+  
   width: 250px;
   background-color: #fafafa;
   border: 1px solid #eaeaea;
@@ -9,52 +13,93 @@
   flex-direction: column;
   transition: width 0.3s ease;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  
+  /* Make the sidebar full height and fixed */
+  height: 100vh; 
+  margin: 0; /* Remove external margin */
 }
 
 .sidebar.collapsed {
   width: 60px;
 }
 
-.sidebar-toggle {
-  display: none;
-  margin-bottom: 12px;
-  padding: 0 16px;
+/* Toggle Icon Container */
+.sidebar-toggle-desktop {
+  display: flex;
+  justify-content: flex-start; /* Aligned to the left */
+  margin-bottom: 16px;
+  padding: 0 8px; /* Consistent padding */
 }
 
-.sidebar-brand {
+.custom-toggle-icon {
+  cursor: pointer;
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 0 16px 16px;
-  gap: 8px;
-  border-bottom: 1px solid #eaeaea;
-  margin-bottom: 8px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  background-color: transparent; /* Default transparent background */
 }
 
-.brand-logo {
-  font-size: 1.4rem;
-  color: #ff6b1d;
-  font-weight: 800;
+.custom-toggle-icon:hover {
+  background-color: #ff6b1d; /* Orange background on hover */
 }
 
-.brand-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #333;
-  transition: opacity 0.3s ease;
+.custom-icon {
+  width: 24px;
+  height: 24px;
+  stroke: black; /* Default black color for the SVG stroke */
+  transition: stroke 0.2s ease;
 }
 
-.sidebar.collapsed .brand-name {
-  opacity: 0;
-  display: none;
+.custom-toggle-icon:hover .custom-icon {
+  stroke: white; /* White color on hover */
 }
 
+/* Menu Container */
 .sidebar-menu {
   display: flex;
   flex-direction: column;
+  /* flex-grow: 1 is the key here to take all available space */
+  flex-grow: 1; 
+  overflow: hidden; /* Hide overflow for the parent menu container */
+  position: relative;
+  padding: 0 8px; /* Padding for the container */
+}
+
+/* New Scrollable Area - This is what provides the scrollbar! */
+.menu-items-scroll-area {
+  flex-grow: 1; /* Takes up all vertical space between toggle and bottom item */
+  overflow-y: auto; /* Enable vertical scrolling (THE CRITICAL LINE) */
+  padding: 0;
   gap: 4px;
-  padding: 0 8px;
-  flex-grow: 1;
+  display: flex; /* Make it a flex container to arrange items */
+  flex-direction: column;
+  margin-bottom: 8px; /* Space before the bottom item */
+  padding-right: 8px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar Styles (ensuring a clean look) */
+.menu-items-scroll-area::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+.menu-items-scroll-area::-webkit-scrollbar-track {
+  background: transparent; /* Track color */
+  border-radius: 3px;
+}
+
+.menu-items-scroll-area::-webkit-scrollbar-thumb {
+  background: #ff6b1d; /* Scrollbar color */
+  border-radius: 3px;
+}
+
+.menu-items-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #e55c14; /* Darker color on hover */
 }
 
 .sidebar-item {
@@ -67,14 +112,22 @@
   font-weight: 500;
   font-size: 0.95rem;
   transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+/* Centering items when collapsed */
+.sidebar.collapsed .sidebar-item {
+  justify-content: center; /* Center horizontally */
+  padding: 10px 0; /* Adjust padding for collapsed state */
 }
 
 .sidebar-item:hover {
-  background-color: #f0f0f0;
+  background-color: #008080; /* Teal/Dark Green (keeping your change) */
+  color: white;
 }
 
 .sidebar-item.active {
-  background-color: #ff6b1d;
+  background-color: #ff6b1d; /* Orange */
   color: white;
 }
 
@@ -82,13 +135,16 @@
   color: white;
 }
 
+/* Bottom Item (Logout) - Placed outside the scroll area for fixed position */
 .sidebar-item.bottom-item {
-  margin-top: auto;
   padding-top: 12px;
   padding-bottom: 12px;
   border-top: 1px solid #eaeaea;
-  margin-top: 16px;
+  padding-left: 24px; /* Adjust padding to match uncollapsed width */
+  padding-right: 16px;
+  margin-top: auto; /* Push to the very bottom */
 }
+
 
 .sidebar-icon {
   color: #6c757d;
@@ -97,6 +153,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease, margin-right 0.3s ease;
+}
+
+/* No margin-right for icons when collapsed */
+.sidebar.collapsed .sidebar-icon {
+  margin-right: 0;
 }
 
 .sidebar-item:hover .sidebar-icon,
@@ -106,41 +168,40 @@
 
 .sidebar-label {
   white-space: nowrap;
-  transition: opacity 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .sidebar.collapsed .sidebar-label {
   opacity: 0;
-  display: none;
+  visibility: hidden;
+  width: 0; /* Collapse width to hide text */
 }
 
-/* Responsive */
-@media (max-width: 991.98px) {
-  .sidebar {
-    width: 60px;
-  }
-  .sidebar-toggle {
-    display: block;
-  }
-  .sidebar:not(.collapsed) {
-    width: 250px;
-  }
-}
-
+/* Responsive - Keep consistent behavior */
 @media (max-width: 767.98px) {
   .sidebar {
-    width: 100%;
-    border-radius: 12px;
+    width: 60px; /* Always collapsed on smaller screens or use a mobile specific solution */
+    margin: 0;
+    height: 100vh;
   }
-  .sidebar-toggle {
-    display: block;
+
+  .sidebar-toggle-desktop {
+    justify-content: center; /* Center on mobile if it's the only visible element */
+    padding: 0;
   }
-  .sidebar.collapsed {
-    width: 100%;
-  }
-  .sidebar.collapsed .brand-name,
+
   .sidebar.collapsed .sidebar-label {
-    opacity: 1;
-    display: inline-block;
+    display: none !important;
+  }
+
+  /* Force items to center for mobile collapsed view */
+  .sidebar-item {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .sidebar-icon {
+    margin-right: 0;
   }
 }

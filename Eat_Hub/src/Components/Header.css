@@ -1,41 +1,54 @@
 :root {
   --eh-primary-orange: #ff6b1d;
-  --eh-light-bg: #faf8f8;
-  --dark-green: #173f1a;
+  --eh-light-bg: #f5f5f5;
+  --dark-green: #008080;
 }
 
 .eh-header {
   background-color: #fff;
+  padding: 0.5rem 0 !important; 
   border-bottom: 1px solid #eaeaea;
   width: 100%;
   z-index: 1000;
+  height: 11vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Logo */
 .eh-logo {
-  width: 36px;
-  height: 36px;
+  width: 32px; 
+  height: 32px;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(37%) sepia(87%) saturate(1600%) hue-rotate(359deg) brightness(100%) contrast(100%);
 }
 
 @media (min-width: 768px) {
   .eh-logo {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 }
 
 .eh-logo-text {
   color: var(--eh-primary-orange);
-  font-weight: 800;
+  font-weight: 700; 
+  font-size: 1.5rem !important;
 }
 
 /* Search */
 .eh-search-input {
+  margin-left: 60px;
+  height: 40px;
   border-radius: 50px !important;
   overflow: hidden;
   background-color: var(--eh-light-bg);
+}
+
+.eh-search-desktop {
+  width: 100%; 
+  max-width: 500px;
 }
 
 .eh-search-prepend,
@@ -44,73 +57,87 @@
   border: none !important;
 }
 
-.eh-search-control::placeholder {
-  color: #a0a0a0;
-  font-size: 0.95rem;
+.eh-search-control {
+    font-size: 1rem;
 }
 
-/* 🔥 Remove blue focus line */
+.eh-search-control::placeholder {
+  color: #a0a0a0;
+  font-size: 1rem;
+}
+
 .eh-search-control:focus {
   outline: none !important;
   box-shadow: none !important;
   border-color: transparent !important;
 }
 
-/* Expanded search on mobile */
-.eh-search-expanded-mobile {
-  align-items: center;
-}
-
-/* Location Button */
+/* Location Button (Desktop & Offcanvas) */
 .eh-location-btn {
   background-color: var(--eh-light-bg) !important;
-  color: black !important;
+  color: #495057 !important;
   border-radius: 50px !important;
-  font-weight: 600;
-  padding: 0.5rem 1.2rem;
+  font-weight: 400; 
+  padding: 0.75rem 1rem !important; 
   text-align: left;
   display: flex;
   align-items: center;
+  transition: none !important;
+  height: 40px;
+}
+
+.eh-location-btn svg {
+  color: #6c757d;
 }
 
 .eh-location-btn:focus,
 .eh-location-btn:active {
   box-shadow: none !important;
+  background-color: var(--eh-light-bg) !important;
 }
 
-/* Tabs Group */
-.eh-tab-group {
-  display: flex;
-  background-color: #f8f6f6;
-  border-radius: 50px;
-  padding: 0.25rem;
-  gap: 0.25rem;
-}
-
-.eh-tab {
-  color: black !important;
-  padding: 0.5rem 1rem !important;
-  text-decoration: none !important;
-  white-space: nowrap;
-  font-weight: 500;
-  font-size: 0.95rem;
-  border-radius: 50px;
-  transition: all 0.2s ease;
-  background: transparent;
-}
-
-.eh-tab:hover {
-  background-color: var(--dark-green);
-  color: white !important;
-}
-
-.eh-tab.active {
-  color: white !important;
+/* Cart Button */
+.eh-cart-btn {
   background-color: var(--eh-primary-orange) !important;
-  font-weight: 600;
+  border-color: var(--eh-primary-orange) !important;
+  width: 48px;
+  height:35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px !important; 
+  padding: 0 !important;
+  transition: all 0.2s;
+  color: white !important;
 }
 
-/* Location Input in Modal */
+.eh-cart-btn svg { 
+    color: white !important;
+}
+
+.eh-cart-btn:hover {
+  background-color: #e55c14 !important;
+  border-color: #e55c14 !important;
+}
+
+/* Sign In Button */
+.eh-sign-in-btn {
+    background-color: white !important;
+    border: 1px solid #ced4da;
+    color: #495057 !important;
+    font-weight: 600;
+    height: 40px;
+    padding: 0 1.25rem;
+    border-radius: 20px !important;
+    transition: all 0.2s;
+}
+
+.eh-sign-in-btn:hover {
+    background-color: var(--eh-light-bg) !important;
+    color: #333 !important;
+}
+
+/* Location Input in Modal - Unchanged */
 .eh-location-input {
   border: 2px solid var(--eh-primary-orange);
   border-radius: 8px;
@@ -118,97 +145,72 @@
   font-size: 1rem;
 }
 
-.eh-location-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 107, 29, 0.2);
-}
 
-/* Icons */
-.eh-icon-btn {
-  background: transparent !important;
-  border: none !important;
-  padding: 0.4rem !important;
-}
-
-.eh-icon-btn:hover {
-  background-color: var(--eh-light-bg) !important;
-  border-radius: 50%;
-}
-
-.eh-cart-btn {
-  background-color: var(--eh-primary-orange) !important;
-  border-color: var(--eh-primary-orange) !important;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50% !important;
-  padding: 0 !important;
-  transition: all 0.2s;
-}
-
-.eh-cart-btn:hover {
-  background-color: #e55c14 !important;
-}
-
-/* Offcanvas */
-.eh-mobile-options-offcanvas .offcanvas-header {
-  padding: 1rem 1rem 0.5rem;
-}
-
-.eh-mobile-options-offcanvas .offcanvas-body {
-  padding: 1rem;
-}
-
+/* Offcanvas Styles */
 .eh-mobile-options-offcanvas .eh-location-btn {
-  width: 100%;
-  justify-content: flex-start;
+    padding: 0.5rem 1rem !important;
+    border: 1px solid #ccc !important;
+    /* Overriding default light background hover effect */
 }
 
-.eh-mobile-options-offcanvas .eh-tab-group {
-  width: 100%;
-  justify-content: space-between;
-  padding: 0.25rem;
-  background-color: #f8f6f6;
-  border-radius: 50px;
+.eh-mobile-options-offcanvas .eh-location-btn:hover {
+     background-color: var(--eh-light-bg) !important;
 }
 
-.eh-mobile-options-offcanvas .eh-tab {
-  flex: 1;
-  text-align: center;
-  padding: 0.5rem 0 !important;
-  font-size: 0.95rem;
+.eh-offcanvas-link {
+    /* Style for Notifications link in offcanvas */
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    font-size: 1.1rem;
+    padding: 0.5rem 0 !important;
+    text-align: left;
+    transition: all 0.2s;
 }
 
-/* Responsive */
+.eh-offcanvas-link:hover {
+    color: var(--eh-primary-orange) !important;
+    text-decoration: underline !important;
+}
+
+
+/* Responsive - Ensuring single line on mobile */
 @media (max-width: 991.98px) {
   .eh-header .container-fluid {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  .eh-logo {
-    width: 32px;
-    height: 32px;
-  }
-
+  /* Make logo text slightly smaller for a tighter fit */
   .eh-logo-text {
-    font-size: 1.15rem;
+    font-size: 1.3rem !important;
   }
 
-  .eh-tab {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.75rem !important;
+  /* Reduce space between elements */
+  .eh-header .row {
+      gap: 0.5rem !important;
   }
-}
-
-@media (max-width: 575.98px) {
-  .eh-search-control::placeholder {
-    font-size: 0.85rem;
+  
+  /* Ensure logo takes minimal space */
+  .eh-col-logo {
+      flex-grow: 0 !important;
   }
 
-  .eh-tab {
-    font-size: 0.85rem;
+  /* Center the search icon nicely on mobile */
+  .eh-col-search {
+      flex-grow: 1 !important;
+      justify-content: flex-start !important;
+  }
+
+  /* Tighter right-side grouping */
+  .eh-header .align-items-center.justify-content-end.gap-2 {
+      gap: 0.5rem !important;
+  }
+
+  /* Tighter cart button on mobile */
+  .eh-cart-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px !important;
   }
 }

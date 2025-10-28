@@ -1,7 +1,17 @@
+// src/Components/Sidebar.jsx
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import "./Sidebar.css";
-import { FiHome, FiDroplet, FiBriefcase, FiUser, FiGrid, FiGift, FiHeart, FiLogOut, FiMenu, FiX } from "react-icons/fi";
+import leftPanelIcon from "../assets/leftpanelicon.png";
+import {
+  FiHome,
+  FiDroplet,
+  FiBriefcase,
+  FiUser,
+  FiGrid,
+  FiGift,
+  FiHeart,
+  FiLogOut,
+} from "react-icons/fi";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -17,37 +27,62 @@ const Sidebar = () => {
     { id: "invite", label: "Invite Friends", icon: <FiUser size={20} /> },
     { id: "best", label: "Best of Eat Hub", icon: <FiHeart size={20} /> },
     { id: "account", label: "Account", icon: <FiUser size={20} /> },
-    { id: "logout", label: "Logout", icon: <FiLogOut size={20} />, isBottom: true },
   ];
+
+  const bottomItem = {
+    id: "logout",
+    label: "Logout",
+    icon: <FiLogOut size={20} />,
+    isBottom: true,
+  };
 
   return (
     <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
-      <div className="sidebar-toggle">
-        <Button
-          variant="light"
+      {/* Toggle Button */}
+      <div className="sidebar-toggle-desktop">
+        <div
+          className="custom-toggle-icon"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-2"
         >
-          {isCollapsed ? <FiMenu size={20} /> : <FiX size={20} />}
-        </Button>
+          <img
+            src={leftPanelIcon}
+            alt={isCollapsed ? "Open Sidebar" : "Close Sidebar"}
+            className="custom-icon"
+          />
+        </div>
       </div>
 
-      <div className="sidebar-brand">
-        <span className="brand-logo">E</span>
-        <span className="brand-name">atHub</span>
-      </div>
-
+      {/* Menu */}
       <nav className="sidebar-menu">
-        {menuItems.map((item) => (
-          <div
-            key={item.id}
-            className={`sidebar-item ${activeItem === item.id ? "active" : ""} ${item.isBottom ? "bottom-item" : ""}`}
-            onClick={() => setActiveItem(item.id)}
-          >
-            <span className="sidebar-icon">{item.icon}</span>
-            {!isCollapsed && <span className="sidebar-label">{item.label}</span>}
-          </div>
-        ))}
+        {/* Scrollable Area for Main Items */}
+        <div className="menu-items-scroll-area">
+          {menuItems.map((item) => (
+            <div
+              key={item.id}
+              className={`sidebar-item ${
+                activeItem === item.id ? "active" : ""
+              }`}
+              onClick={() => setActiveItem(item.id)}
+            >
+              <span className="sidebar-icon">{item.icon}</span>
+              {!isCollapsed && (
+                <span className="sidebar-label">{item.label}</span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Item (Logout) - Always visible, outside the scrollable area */}
+        <div
+          key={bottomItem.id}
+          className={`sidebar-item ${bottomItem.isBottom ? "bottom-item" : ""}`}
+          onClick={() => setActiveItem(bottomItem.id)}
+        >
+          <span className="sidebar-icon">{bottomItem.icon}</span>
+          {!isCollapsed && (
+            <span className="sidebar-label">{bottomItem.label}</span>
+          )}
+        </div>
       </nav>
     </div>
   );

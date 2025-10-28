@@ -1,3 +1,4 @@
+// src/Pages/HomePage.jsx
 import React from "react";
 import Header from "../Components/Header.jsx";
 import HeroSection from "../Components/HeroSection.jsx";
@@ -5,6 +6,7 @@ import Offers from "../Components/Offers.jsx";
 import CategoryPage from "../Components/CategoryPage.jsx";
 import Dayoftheday from "../Components/Dishoftheday.jsx";
 import Sidebar from "../Components/Sidebar.jsx";
+import Menu from "../Components/Menu.jsx";
 import "../App.css";
 
 const HomePage = () => {
@@ -14,10 +16,13 @@ const HomePage = () => {
       <div className="content-layout">
         <Sidebar />
         <main className="page-content">
-          <HeroSection />
+          <Menu />
           <Offers />
           <CategoryPage />
           <Dayoftheday />
+          <div style={{ height: "1000px", background: "#f5f5f5", margin: "20px 0" }}>
+            Scrollable content area
+          </div>
         </main>
       </div>
     </div>

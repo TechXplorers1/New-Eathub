@@ -1,0 +1,121 @@
+:root {
+  --cart-bg: #fff;
+  --cart-border: #eaeaea;
+  --cart-orange: #ff6b1d;
+}
+
+/* Sidebar structure and animation */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden position */
+  width: 360px;
+  max-width: 100%; /* Ensures it fits on small screens */
+  height: 100vh;
+  background-color: var(--cart-bg);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  transition: right 0.4s ease; /* Animation for sliding */
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.show {
+  right: 0; /* Visible position */
+}
+
+/* Overlay behind sidebar */
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 1500;
+  transition: opacity 0.3s ease;
+}
+
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--cart-border);
+}
+
+.cart-header h5 {
+  font-weight: 700;
+  margin: 0;
+}
+
+.cart-close-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+.cart-close-btn:hover {
+  transform: rotate(90deg);
+  color: var(--cart-orange);
+}
+
+/* Body Content */
+.cart-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Empty Cart State */
+.empty-cart-state {
+  width: 80%;
+}
+
+.empty-cart-icon {
+  margin-bottom: 1rem;
+}
+
+.cart-empty-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.cart-empty-message {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+.start-shopping-btn {
+  background-color: var(--cart-orange) !important;
+  border-color: var(--cart-orange) !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.6rem 2rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.start-shopping-btn:hover {
+  background-color: #e55c14 !important;
+  border-color: #e55c14 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-sidebar {
+    width: 90%;
+  }
+}

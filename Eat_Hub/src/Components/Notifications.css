@@ -1,0 +1,133 @@
+:root {
+  --notif-bg: #fff;
+  --notif-light: #fdfaf8;
+  --notif-border: #eaeaea;
+  --notif-orange: #ff6b1d;
+}
+
+/* 🔔 Notification Icon Dot */
+.notif-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--notif-orange);
+  border-radius: 50%;
+}
+
+/* Sidebar */
+.notif-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 360px;
+  height: 100vh;
+  background-color: var(--notif-bg);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-sidebar.show {
+  right: 0;
+}
+
+/* Overlay behind sidebar */
+.notif-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 1500;
+  transition: opacity 0.3s ease;
+}
+
+/* Header */
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--notif-border);
+}
+
+.notif-header h5 {
+  font-weight: 700;
+  margin: 0;
+}
+
+.notif-close-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+.notif-close-btn:hover {
+  transform: rotate(90deg);
+  color: var(--notif-orange);
+}
+
+/* Notification List */
+.notif-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 1rem 0;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--notif-light);
+  margin: 0.6rem 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+.notif-item:hover {
+  background-color: #fff4ec;
+  transform: translateX(-3px);
+}
+
+.notif-icon {
+  font-size: 1.4rem;
+  margin-right: 0.8rem;
+}
+
+.notif-content {
+  flex: 1;
+}
+
+.notif-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #222;
+}
+
+.notif-message {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.notif-time {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .notif-sidebar {
+    width: 90%;
+  }
+}
