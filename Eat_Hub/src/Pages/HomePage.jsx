@@ -7,6 +7,9 @@ import CategoryPage from "../Components/CategoryPage.jsx";
 import Dayoftheday from "../Components/Dishoftheday.jsx";
 import Sidebar from "../Components/Sidebar.jsx";
 import Menu from "../Components/Menu.jsx";
+import Banner from "../Components/banner.jsx";
+import PromoBanner from "../Components/PromoBanner.jsx";
+import Foodlist from "../Components/Foodlist.jsx"
 import "../App.css";
 
 const HomePage = () => {
@@ -17,6 +20,9 @@ const HomePage = () => {
         <Sidebar />
         <main className="page-content">
           <Menu />
+          <Banner/>
+          <PromoBanner />
+          <Foodlist/>
           <Offers />
           <CategoryPage />
           <Dayoftheday />

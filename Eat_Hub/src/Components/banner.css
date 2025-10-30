@@ -1,0 +1,180 @@
+/* --- General Card Styling (Fixed Desktop Height) --- */
+.promo-card {
+  border-radius: 12px;
+  color: white;
+  /* Fixed height for desktop/tablet consistency */
+  height: 220px; 
+  min-height: 220px; 
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column;
+  padding: 30px !important; 
+  position: relative; /* CRITICAL for absolute positioning of the right image */
+}
+
+/* --- Colors & Buttons (Unchanged from last version) --- */
+.promo-orange {
+  background-color: #ff6b1d; 
+}
+
+.promo-teal {
+  background-color: #008080;
+}
+
+.promo-btn-light {
+  background-color: #f7f7f7; 
+  color: #ff6b1d;
+  border: none;
+  font-weight: bold;
+  padding: 8px 20px; 
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  font-size: 0.95rem;
+}
+
+.promo-btn-light:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+.promo-btn-teal {
+  background-color: #ffffff; 
+  color: #008080;
+  border: none;
+  font-weight: bold;
+  padding: 8px 20px; 
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  font-size: 0.95rem;
+}
+
+.promo-btn-teal:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+
+/* --- Typography (Tuned for small space) --- */
+.promo-title {
+  font-size: 1.5rem; 
+  font-weight: 700;
+  line-height: 1.1; 
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.promo-subtitle {
+  font-size: 0.9rem; 
+  font-weight: 400;
+  /* Removed default margin-bottom to save vertical space */
+  margin-bottom: 1rem !important; 
+}
+
+
+/* --- Image Sizing and Placement (Final Sizes) --- */
+
+/* Left Card Images */
+.promo-images-container {
+  width: 200px; 
+  height: 100px; 
+  flex-shrink: 0; /* Prevents images from shrinking on desktop */
+}
+
+.promo-image-small {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Right Card Image (Large) */
+.promo-image-large {
+  width: 140px; 
+  height: 140px; 
+  object-fit: cover;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* --- DESKTOP/TABLET LAYOUT (min-width: 992px) --- */
+/* ---------------------------------------------------------------------- */
+@media (min-width: 992px) {
+  
+  /* Left Card: Content aligned top-left, Images aligned top-right */
+  .promo-orange {
+    flex-direction: row !important; 
+    align-items: flex-start !important;
+    justify-content: space-between; 
+  }
+  
+  /* Right Card: Content aligned top-left, Image positioned bottom-right */
+  .promo-teal {
+    align-items: flex-start !important;
+    justify-content: flex-start; /* Text takes precedence over image positioning */
+  }
+
+  /* Constrain text width on the teal card to make room for the image */
+  .promo-teal-text {
+    width: 65%; /* Text takes 65% width */
+    margin-right: 30px;
+  }
+  
+  /* Absolute Positioning for Right Image (CRITICAL for the look) */
+  .promo-image-right-container {
+    position: absolute;
+    right: 30px; /* Aligns with padding */
+    bottom: 30px; /* Aligns with padding */
+    width: 140px; /* Match large image size */
+    height: 140px;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* --- MOBILE LAYOUT (max-width: 991.98px) --- */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .promo-card {
+    /* **RESPONSIVENESS FIX:** Allow content to push the card height */
+    height: auto; 
+    min-height: 180px; /* Minimized min-height for phones */
+    padding: 20px !important; /* Smaller padding on mobile */
+    
+    /* Ensure content stacks vertically */
+    flex-direction: column; 
+    /* Center text and images horizontally */
+    align-items: center !important; 
+    justify-content: flex-start !important;
+  }
+
+  .promo-title {
+    font-size: 1.4rem; /* Slightly smaller title on mobile */
+  }
+
+  .promo-subtitle {
+    /* Increased margin bottom on mobile to separate text from button/images */
+    margin-bottom: 0.75rem !important;
+  }
+  
+  /* Orange Card Image Container Stacking */
+  .promo-orange .promo-images-container {
+    width: 100%; /* Take full width */
+    justify-content: center;
+    margin-top: 1rem;
+    height: 80px;
+    order: 3; /* Push images to the bottom of the card content */
+  }
+  
+  /* Ensure the right image is hidden on mobile */
+  .promo-teal .promo-image-right-container {
+      display: none !important;
+  }
+  
+  /* Ensure text content on teal card uses full width on mobile */
+  .promo-teal-text {
+    width: 100%;
+    margin-right: 0;
+  }
+}
